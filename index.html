@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- development version, includes helpful console warnings -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <input type="text" v-model="lista">
+        {{sumar()}}
+        Suma computed:
+        {{computedSuma}}
+        <br>
+        <button @contextmenu="sumar1()">Sumar</button>
+        <h1>{{resultadosuma2}}</h1>
+        <br>
+        <h2>Actividad 3 </h2>
+        Nombre:
+        <input type="text" v-model="NombreIngresado">
+        Apellido:
+        <input type="text">
+        <button @click="ingresar()">Ingresar</button>
+        <br>
+        <p>{{nombres}}</p>
+    </div>
+
+    <!--Modelos de datos-->
+    <div class="lesson">
+        <label>Animal</label>
+        <input type="text" v-model="animal.animal">
+        <br>
+        <label>Nombre Científico</label>
+        <input type="text" v-model="animal.nombreCientifico">
+        <br>
+        <label>Familia</label>
+        <input type="text" v-model="animal.familia">
+        <br>
+        <label>Descripion</label>
+        <input type="text" v-model="animal.descripcion">
+        <br>
+    </div>
+    <hr>
+    <div class="lesson animales">
+        <h1>{{animal.animal}}</h1>
+    </div>
+    <div class="lesson animales">
+        <p>{{animal.familia}}</p>
+        <p>{{animal.nombreCientifico}}</p>
+        <p>{{animal.descripcion}}</p>
+        <p>{{animal.cantidad}}</p>
+        <button @click="agregarEjemplar()">Agreagar un ejemplar</button>
+    </div>
+
+    <script>
+        const app=new Vue({
+            el: '#app', //Selecciona el contenedor de nuestra app
+            data: { // Se crea data
+                message: 'Hola bebes',
+                numero: 568474,
+                booleano: true,
+                lista: ['arroz', 'pollo', 'soya'],
+                valor1:2,
+                valor2:3,
+                resultadosuma2: 0,
+                //Actividad 3
+                nombres: [],
+                NombreIngresado: "",
+            },
+            computed:{
+                computedSuma(){//solo va a retornar una variable
+                    return parseInt(this.valor1)+(this.valor2)
+                }
+            },
+            methods:{
+                sumar: function(){
+                    return parseInt(this.valor1)+(this.valor2) + "Date:" + Date.now()
+                },
+                sumar1: function(){
+                    this.resultadosuma2 += 2 
+                },
+                //Actiidad 3
+                ingresar: function(){
+                    if(this.nombres.length==0){
+                        this.nombres.push(2);
+                    }else{
+                        let siguientePar= this.nombres[this.nombres.length-1]+2
+                        this.nombres.push(siguientePar);
+                    }
+                },
+            }
+        })
+    </script>
+    
+</body>
+</html>
